@@ -154,8 +154,8 @@ class OrderDetailsModelAddress {
   int zoneId;
   int subZoneId;
   String? block;
-  String street;
-  String houseNumber;
+  String? street;
+  String? houseNumber;
   String? notes;
   int addressDefault;
   String? lat;

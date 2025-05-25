@@ -85,8 +85,8 @@ class OrderDetailsScreen extends StatelessWidget {
                           ),
                           SizedBox(height: size.height * .01,),
                           Container(
-                            margin: EdgeInsets.only(top: 24.h,left: 16.w,right: 16.w),
-                            padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 12.h),
+                            margin: EdgeInsets.only(top: 24.h,left: 10.w,right: 10.w),
+                            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 12.h),
                             decoration: BoxDecoration(
                               border: Border.all(color: AppTheme.kLightGrey),
                               borderRadius: BorderRadius.circular(14.r),
@@ -115,7 +115,7 @@ class OrderDetailsScreen extends StatelessWidget {
                                               : order.branch.createdAt,
                                           style: Styles.kBold14,
                                         ),
-                                        Text("${LocaleKeys.delivered_by.tr()}:", style: Styles.kBold14),
+                                        Text("${LocaleKeys.delivered_by.tr()}:", style: Styles.kBold14.copyWith(color: AppTheme.kPrimary)),
                                         Text(order.branch.title.lang.toString(), style: Styles.kBold14),
                                         InkWell(
                                           onTap: () async {
@@ -131,7 +131,12 @@ class OrderDetailsScreen extends StatelessWidget {
                                                 height: .025.sh,
                                               ),
                                               SizedBox(width: 5.w),
-                                              Text(order.branch.address.lang.toString(), style: Styles.kBold14),
+                                              Text(
+                                                order.branch.address.lang.toString(),
+                                                style: Styles.kBold14,
+
+                                              ),
+
                                             ],
                                           ),
                                         ),

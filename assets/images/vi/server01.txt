@@ -1,0 +1,27 @@
+https://cloud.digitalocean.com
+
+------------
+root
+
+IP Address: 104.248.57.194
+Username: root
+Password: 00128939914Zn@#$
+
+
+------------
+
+login server ip
+https://104.248.57.194:2031/login/index.php
+104.248.57.194
+Username: root
+Password: 00128939914Zn@#$
+
+------------
+site info
+
+Domain: worldapp.live
+Username: shormeh
+Password: agGBDhu7
+
+
+webdesign4it@gmail.com

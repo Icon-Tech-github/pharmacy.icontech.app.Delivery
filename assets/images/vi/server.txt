@@ -1,0 +1,41 @@
+https://cloud.digitalocean.com
+webdesign4it@gmail.com
+00128939914
+
+
+
+https://67.205.144.38:2031/login/index.php
+
+
+Droplet Name: server.world-designs.com
+IP Address: 67.205.144.38
+Username: root
+Password: 00128939914Zn@#$
+
+
+
+
+zone "ns5.world-designs.com" {type master;file "/var/named/ns5.world-designs.com.db";};
+zone "ns6.world-designs.com" {type master;file "/var/named/ns6.world-designs.com.db";};
+
+
+-----------
+التحميل
+http://centos-webpanel.com/server-update
+
+-----------
+IP Address: 67.205.144.38
+Web Panel Login: 
+Domain: worldapp.live
+Username: shormeh
+Password: agGBDhu7
+Admin Email: webdesign4it@gmail.com
+
+Panel URL: 
+http://server.world-designs.com:2082
+https://server.world-designs.com:2083
+
+NameServers:
+ns1.centos-webpanel.com
+ns2.centos-webpanel.com
+

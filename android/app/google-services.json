@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "375123250763",
+    "project_id": "pharmacy-icon",
+    "storage_bucket": "pharmacy-icon.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:375123250763:android:af15f87dd8896752cb47ce",
+        "android_client_info": {
+          "package_name": "com.icontds.pharmacy.icon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "375123250763-6hh941c35dfiq0i4momlq64qrsk37604.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.icontds.pharmacy.icon",
+            "certificate_hash": "c103ea85ac84eb63b142ec096b14adef20cda3cd"
+          }
+        },
+        {
+          "client_id": "375123250763-86vr20sjn9pkapgcvjsiqomek1htn6kd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.icontds.pharmacy.icon",
+            "certificate_hash": "48ee9ee13dac14b1ddc9187586ca7f0aa8d877c2"
+          }
+        },
+        {
+          "client_id": "375123250763-r4u5oad1l2ilahlla31vgfq8sshh36k5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGQKovrImXQzWLzGFAsZgMU7-EWmpkpF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "375123250763-r4u5oad1l2ilahlla31vgfq8sshh36k5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "375123250763-2fj12rh42814sg57sstv65qejg9bal8m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pharmacyIcontech"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:375123250763:android:39e9d1dbdd2c77fecb47ce",
+        "android_client_info": {
+          "package_name": "com.pharmacy.icontech.app.delivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "375123250763-r4u5oad1l2ilahlla31vgfq8sshh36k5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGQKovrImXQzWLzGFAsZgMU7-EWmpkpF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "375123250763-r4u5oad1l2ilahlla31vgfq8sshh36k5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "375123250763-2fj12rh42814sg57sstv65qejg9bal8m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pharmacyIcontech"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -307,12 +307,12 @@ class TitleClass {
 class Client {
   int id;
   String name;
-  String phone;
+  String? phone;
 
   Client({
     required this.id,
     required this.name,
-    required this.phone,
+     this.phone,
   });
 
   factory Client.fromJson(Map<String, dynamic> json) => Client(

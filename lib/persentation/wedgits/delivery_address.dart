@@ -119,7 +119,7 @@ class DeliveryAddress extends StatelessWidget {
               SizedBox(width: 12.w,),
               SizedBox(
                   width: .7.sw,
-                  child: Text(client.phone, style: Styles.kMedium16,)),
+                  child: Text(client.phone ?? "", style: Styles.kMedium16,)),
             ],
           ),
         ],

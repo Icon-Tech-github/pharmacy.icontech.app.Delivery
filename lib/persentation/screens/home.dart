@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -60,56 +61,171 @@ class _HomeScreenState extends State<HomeScreen> {
     );
 //   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) async{
-      print("33333");
+    // FirebaseMessaging.onMessage.listen((RemoteMessage message) async{
+    //   print("33333");
+    //
+    //   RemoteNotification notification = message.notification!;
+    //   AndroidNotification android = message.notification!.android!;
+    //
+    //   if (notification != null && android != null) {
+    //     LocalStorage.getData(key: 'lang') == 'en'?
+    //     flutterLocalNotificationsPlugin.show(
+    //         notification.hashCode,
+    //         message.data['title_en'],
+    //         message.data['description_en'],
+    //         NotificationDetails(
+    //           android: AndroidNotificationDetails(
+    //             message.data['title_en'],
+    //             message.data['description_en'],
+    //             icon: '@mipmap/ic_launcher',
+    //           ),
+    //         )):
+    //     flutterLocalNotificationsPlugin.show(
+    //         notification.hashCode,
+    //         message.data['title_ar'],
+    //         message.data['description_ar'],
+    //         NotificationDetails(
+    //           android: AndroidNotificationDetails(
+    //             message.data['title_ar'],
+    //             message.data['description_ar'],
+    //             icon: '@mipmap/ic_launcher',
+    //           ),
+    //         ));
+    //
+    //     if (notification != null) {
+    //       showSimpleNotification(
+    //           InkWell(
+    //             onTap: () {
+    //               // Navigator.push(context, MaterialPageRoute(builder: (context) =>  BlocProvider<OrderDetailsCubit>(
+    //               //     create: (BuildContext context) => OrderDetailsCubit(OrderDetailsRepo(), int.parse(message.data['order_id'].toString())),
+    //               //     child: OrderDetailsScreen(client: ,)),));
+    //               // push(
+    //               //   context,
+    //               //   BlocProvider<NotificationCubit>(
+    //               //       create: (BuildContext
+    //               //       context) =>
+    //               //           NotificationCubit(
+    //               //               NotificationRepo()),
+    //               //       child:
+    //               //       NotifyScreen()),
+    //               // );
+    //             },
+    //             child: Container(
+    //               height: 65,
+    //               child: Padding(
+    //                   padding: const EdgeInsets.only(top: 5.0),
+    //                   child: Column(
+    //                     children: [
+    //                       Text(
+    //                         LocalStorage.getData(key: 'lang') ==
+    //                             'en' ? message.data['title_en'] : message
+    //                             .data['title_ar'],
+    //                         style: TextStyle(
+    //                             color: AppTheme.white,
+    //                             fontSize: 16,
+    //                             fontWeight: FontWeight.bold),
+    //                       ),
+    //                       // SizedBox(
+    //                       //   height: 5,
+    //                       // ),
+    //                       // Text(
+    //                       //   message.notification!.body!,
+    //                       //   style: TextStyle(
+    //                       //       color: HomePage.colorGreen,
+    //                       //       fontSize: 14,
+    //                       //       fontWeight: FontWeight.bold),
+    //                       // ),
+    //                     ],
+    //                   )),
+    //             ),
+    //           ),
+    //           duration: Duration(seconds: 3),
+    //           background: AppTheme.kPrimary,
+    //           elevation: 3
+    //       );
+    //       print("kkkkkkkkkkkkkkkk");
+    //       OrderCubit.selectedIndex=0;
+    //       context.read<OrderCubit>().page=1;
+    //       context.read<OrderCubit>().newOrderOnLoad();
+    //     }
+    //
+    //   }
+    // });
 
-      RemoteNotification notification = message.notification!;
-      AndroidNotification android = message.notification!.android!;
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+      print("FCM message received");
+
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+
+      if (kIsWeb) {
+        print('Web notification received');
+        final lang = LocalStorage.getData(key: 'lang') ?? 'en';
+        final title = lang == 'en' ? message.data['title_en'] : message.data['title_ar'];
+        final body = lang == 'en' ? message.data['description_en'] : message.data['description_ar'];
+
+        await flutterLocalNotificationsPlugin.show(
+          notification.hashCode,
+          title,
+          body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              title,
+              body,
+              icon: '@mipmap/ic_launcher',
+            ),
+          ),
+        );
+
+
+        showSimpleNotification(
+          Text(title, style: TextStyle(color: Colors.white)),
+          background: AppTheme.kPrimary,
+          elevation: 3,
+          duration: Duration(seconds: 3),
+        );
+
+        OrderCubit.selectedIndex = 0;
+        context.read<OrderCubit>().page = 1;
+        context.read<OrderCubit>().newOrderOnLoad();
+      }
 
       if (notification != null && android != null) {
-        LocalStorage.getData(key: 'lang') == 'en'?
-        flutterLocalNotificationsPlugin.show(
-            notification.hashCode,
-            message.data['title_en'],
-            message.data['description_en'],
-            NotificationDetails(
-              android: AndroidNotificationDetails(
-                message.data['title_en'],
-                message.data['description_en'],
-                icon: '@mipmap/ic_launcher',
-              ),
-            )):
-        flutterLocalNotificationsPlugin.show(
-            notification.hashCode,
-            message.data['title_ar'],
-            message.data['description_ar'],
-            NotificationDetails(
-              android: AndroidNotificationDetails(
-                message.data['title_ar'],
-                message.data['description_ar'],
-                icon: '@mipmap/ic_launcher',
-              ),
-            ));
+        final lang = LocalStorage.getData(key: 'lang') ?? 'en';
+        final title = lang == 'en' ? message.data['title_en'] : message.data['title_ar'];
+        final body = lang == 'en' ? message.data['description_en'] : message.data['description_ar'];
 
-        if (notification != null) {
-          showSimpleNotification(
-              InkWell(
-                onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) =>  BlocProvider<OrderDetailsCubit>(
-                  //     create: (BuildContext context) => OrderDetailsCubit(OrderDetailsRepo(), int.parse(message.data['order_id'].toString())),
-                  //     child: OrderDetailsScreen(client: ,)),));
-                  // push(
-                  //   context,
-                  //   BlocProvider<NotificationCubit>(
-                  //       create: (BuildContext
-                  //       context) =>
-                  //           NotificationCubit(
-                  //               NotificationRepo()),
-                  //       child:
-                  //       NotifyScreen()),
-                  // );
-                },
-                child: Container(
+        await flutterLocalNotificationsPlugin.show(
+          notification.hashCode,
+          title,
+          body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              title,
+              body,
+              icon: '@mipmap/ic_launcher',
+            ),
+          ),
+        );
+
+
+        showSimpleNotification(
+          Text(title, style: TextStyle(color: Colors.white)),
+          background: AppTheme.kPrimary,
+          elevation: 3,
+          duration: Duration(seconds: 3),
+        );
+
+        OrderCubit.selectedIndex = 0;
+        context.read<OrderCubit>().page = 1;
+        context.read<OrderCubit>().newOrderOnLoad();
+      }
+
+
+          if (notification != null) {
+            showSimpleNotification(
+                Container(
                   height: 65,
                   child: Padding(
                       padding: const EdgeInsets.only(top: 5.0),
@@ -124,32 +240,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
-                          // SizedBox(
-                          //   height: 5,
-                          // ),
-                          // Text(
-                          //   message.notification!.body!,
-                          //   style: TextStyle(
-                          //       color: HomePage.colorGreen,
-                          //       fontSize: 14,
-                          //       fontWeight: FontWeight.bold),
-                          // ),
+
                         ],
                       )),
                 ),
-              ),
-              duration: Duration(seconds: 3),
-              background: AppTheme.kPrimary,
-              elevation: 3
-          );
-          print("kkkkkkkkkkkkkkkk");
-          OrderCubit.selectedIndex=0;
-          context.read<OrderCubit>().page=1;
-          context.read<OrderCubit>().newOrderOnLoad();
-        }
+                duration: Duration(seconds: 3),
+                background: AppTheme.kPrimary,
+                elevation: 3
+            );
+            print("kkkkkkkkkkkkkkkk");
+            OrderCubit.selectedIndex=0;
+            context.read<OrderCubit>().page=1;
+            context.read<OrderCubit>().newOrderOnLoad();
+          }
 
-      }
     });
+
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       Navigator.of(context).pushReplacement(
